@@ -8,19 +8,13 @@ public class Judge {
     public CardType judgeType(String cards) {
         String[] cardsArray = cards.split(" ");
         Arrays.sort(cardsArray);
+        if (isStraight(cardsArray) && isFlush(cardsArray)) return CardType.STRAIGHT_FLUSH;
         if (isFourOfAKind(cardsArray)) return CardType.Four_OF_A_KIND;
         if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
         if (isFlush(cardsArray)) return CardType.FLUSH;
         if (isStraight(cardsArray)) return CardType.STRAIGHT;
-        char previousColor = cardsArray[0].charAt(1);
-        char previousPoint = cardsArray[0].charAt(0);
-        for (int i = 1; i < 5; i++) {
-            if (cardsArray[i].charAt(0) != previousPoint + 1 || cardsArray[i].charAt(1) != previousColor) return null;
-            else {
-                previousPoint = cardsArray[i].charAt(0);
-            }
-        }
-        return CardType.STRAIGHT_FLUSH;
+
+        return null;
     }
 
     private boolean isStraight(String[] cardsArray) {
