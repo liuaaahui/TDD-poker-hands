@@ -49,4 +49,16 @@ public class JudgeTest {
         //then
         assertEquals(FULL_HOUSE, cardType);
     }
+
+    @Test
+    void should_return_flush_when_judge_type_given_3H4H5H7H9H() {
+        //given
+        String cardS = "3H 4H 5H 7H 9H";
+
+        //when
+        CardType cardType = judge.judgeType(cardS);
+
+        //then
+        assertEquals(FLUSH, cardType);
+    }
 }
