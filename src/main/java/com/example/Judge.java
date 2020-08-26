@@ -1,12 +1,15 @@
 package com.example;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Judge {
     public CardType judgeType(String cards) {
         String[] cardsArray = cards.split(" ");
         Arrays.sort(cardsArray);
         if (isFourOfAKind(cardsArray)) return CardType.Four_OF_A_KIND;
+        if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
         char previousColor = cardsArray[0].charAt(1);
         char previousPoint = cardsArray[0].charAt(0);
         for (int i = 1; i < 5; i++) {
@@ -16,6 +19,19 @@ public class Judge {
             }
         }
         return CardType.STRAIGHT_FLUSH;
+    }
+
+    private boolean isFullHouse(String[] cardsArray) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (String card : cardsArray) {
+            Character point = card.charAt(0);
+            map.merge(point, 1, Integer::sum);
+
+        }
+        return map.size() == 2 && (
+                (map.get(cardsArray[0].charAt(0)) == 2 && map.get(cardsArray[4].charAt(0)) == 3)
+                        || (map.get(cardsArray[0].charAt(0)) == 3 && map.get(cardsArray[4].charAt(0)) == 2));
+
     }
 
     private boolean isFourOfAKind(String[] cardsArray) {
