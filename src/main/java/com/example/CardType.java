@@ -1,8 +1,8 @@
 package com.example;
 
 public enum CardType {
-    STRAIGHT_FLUSH(9);
-
+    STRAIGHT_FLUSH(9),
+    Four_OF_A_KIND(8);
     private final int weight;
 
     CardType(int weight) {

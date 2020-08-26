@@ -3,6 +3,7 @@ package com.example;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.example.CardType.Four_OF_A_KIND;
 import static com.example.CardType.STRAIGHT_FLUSH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,5 +25,17 @@ public class JudgeTest {
 
         //then
         assertEquals(STRAIGHT_FLUSH, cardType);
+    }
+
+    @Test
+    void should_return_four_of_a_kind_when_judge_type_given_3H3S3C3D7H() {
+        //given
+        String cardS = "3D 7H 3H 3S 3C";
+
+        //when
+        CardType cardType = judge.judgeType(cardS);
+
+        //then
+        assertEquals(Four_OF_A_KIND, cardType);
     }
 }
