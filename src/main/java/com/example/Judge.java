@@ -15,7 +15,7 @@ public class Judge {
         if (isTwoPairs(cardsArray)) return CardType.TWO_PAIRS;
         if (isPair(cardsArray)) return CardType.PAIR;
 
-        return null;
+        return CardType.HIGH_CARD;
     }
 
     private boolean isPair(String[] cardsArray) {
