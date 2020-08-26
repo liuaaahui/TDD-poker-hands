@@ -86,7 +86,7 @@ public class Judge {
         String[] whiteCards = sortCards(white);
         String[] blackCards = sortCards(black);
         if (isTie(whiteCards, blackCards)) return 0;
-        if (cardType == CardType.STRAIGHT_FLUSH) {
+        if (cardType == CardType.STRAIGHT_FLUSH || cardType == CardType.STRAIGHT) {
             return pointMap.get(whiteCards[whiteCards.length - 1].charAt(0)).compareTo(pointMap.get(blackCards[blackCards.length - 1].charAt(0)));
         }
         if (cardType == CardType.Four_OF_A_KIND) {
