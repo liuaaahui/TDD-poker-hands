@@ -29,7 +29,7 @@ public class JudgeTest {
     @Test
     void should_return_four_of_a_kind_when_judge_type_given_3H3S3C3D7H() {
         //given
-        String cardS = "3D 7H 3H 3S 3C";
+        String cardS = "3D JH 3H 3S 3C";
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -41,7 +41,7 @@ public class JudgeTest {
     @Test
     void should_return_full_house_when_judge_type_given_3H3S3C7D7H() {
         //given
-        String cardS = "3H 3S 3C 7D 7H";
+        String cardS = "3H 3S 3C KD KH";
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -53,7 +53,7 @@ public class JudgeTest {
     @Test
     void should_return_flush_when_judge_type_given_3H4H5H7H9H() {
         //given
-        String cardS = "3H 4H 5H 7H 9H";
+        String cardS = "3H 4H 5H QH 9H";
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -77,7 +77,7 @@ public class JudgeTest {
     @Test
     void should_return_three_of_a_kind_when_judge_type_given_3H4D5H6H7H() {
         //given
-        String cardS = "3H 3D 3S 6H 7H";
+        String cardS = "3H 3D 3S AH 7H";
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -89,7 +89,7 @@ public class JudgeTest {
     @Test
     void should_return_two_pairs_when_judge_type_given_3H3D5S9C5D() {
         //given
-        String cardS = "3H 3D 5S 9C 5D";
+        String cardS = "3H 3D 5S AC 5D";
 
         //when
         CardType cardType = judge.judgeType(cardS);
