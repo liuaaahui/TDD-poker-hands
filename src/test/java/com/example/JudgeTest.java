@@ -109,4 +109,16 @@ public class JudgeTest {
         //then
         assertEquals(PAIR, cardType);
     }
+
+    @Test
+    void should_return_high_card_when_judge_type_given_3H4D5S9CKD() {
+        //given
+        String cardS = "3H 4D 5S 9C KD";
+
+        //when
+        CardType cardType = judge.judgeType(cardS);
+
+        //then
+        assertEquals(HIGH_CARD, cardType);
+    }
 }
