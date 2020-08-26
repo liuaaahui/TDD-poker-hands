@@ -212,4 +212,17 @@ public class JudgeTest {
         //then
         assertEquals(1, result);
     }
+
+    @Test
+    void should_return_1_when_judge_face_given_9HTCAD4H7H_and_KHQC2D8C9S() {
+        //given
+        String white = "9H TC AD 4H 7H";
+        String black = "KH QC 2D 8C 9S";
+
+        //when
+        int result = judge.judgeFaceWithSameType(white, black, HIGH_CARD);
+
+        //then
+        assertEquals(1, result);
+    }
 }
