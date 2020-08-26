@@ -82,6 +82,20 @@ public class Judge {
 
 
     public int judgeFaceWithSameType(String white, String black) {
-        return 0;
+        String[] whiteCards = white.split(" ");
+        Arrays.sort(whiteCards);
+        String[] blackCards = black.split(" ");
+        Arrays.sort(blackCards);
+        if (isTie(whiteCards, blackCards)) return 0;
+        return 1;
+
+    }
+
+    private boolean isTie(String[] whiteCards, String[] blackCards) {
+        for (int cardIndex = 0; cardIndex < whiteCards.length; cardIndex++) {
+            if (whiteCards[cardIndex].charAt(0) != blackCards[cardIndex].charAt(0))
+                return false;
+        }
+        return true;
     }
 }
