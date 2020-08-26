@@ -97,4 +97,16 @@ public class JudgeTest {
         //then
         assertEquals(TWO_PAIRS, cardType);
     }
+
+    @Test
+    void should_return_pair_when_judge_type_given_3H3D5S9CKD() {
+        //given
+        String cardS = "3H 3D 5S 9C KD";
+
+        //when
+        CardType cardType = judge.judgeType(cardS);
+
+        //then
+        assertEquals(PAIR, cardType);
+    }
 }
