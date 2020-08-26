@@ -11,6 +11,7 @@ public class Judge {
         if (isFourOfAKind(cardsArray)) return CardType.Four_OF_A_KIND;
         if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
         if (isFlush(cardsArray)) return CardType.FLUSH;
+        if (isStraight(cardsArray)) return CardType.STRAIGHT;
         char previousColor = cardsArray[0].charAt(1);
         char previousPoint = cardsArray[0].charAt(0);
         for (int i = 1; i < 5; i++) {
@@ -20,6 +21,15 @@ public class Judge {
             }
         }
         return CardType.STRAIGHT_FLUSH;
+    }
+
+    private boolean isStraight(String[] cardsArray) {
+        char previousPoint = cardsArray[0].charAt(0);
+        for (int i = 1; i < 5; i++) {
+            if (previousPoint + 1 != cardsArray[i].charAt(0)) return false;
+            previousPoint++;
+        }
+        return true;
     }
 
     private boolean isFlush(String[] cardsArray) {
@@ -56,5 +66,6 @@ public class Judge {
         }
         return flag == 4;
     }
+
 
 }
