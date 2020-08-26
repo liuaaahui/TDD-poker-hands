@@ -19,44 +19,19 @@ public class Judge {
     }
 
     private boolean isPair(String[] cardsArray) {
-        Map<Character, Integer> map = new HashMap<>();
-        Set<Character> set = new HashSet<>();
-        for (String card : cardsArray) {
-            Character point = card.charAt(0);
-            map.merge(point, 1, Integer::sum);
-            set.add(card.charAt(0));
-        }
-        int[] counter = new int[5];
-        for (Character point : set) {
-            counter[map.get(point)]++;
-        }
+        int[] counter = getCounter(cardsArray);
         return counter[1] == 3 && counter[2] == 1;
     }
 
     private boolean isTwoPairs(String[] cardsArray) {
-        Map<Character, Integer> map = new HashMap<>();
-        Set<Character> set = new HashSet<>();
-        for (String card : cardsArray) {
-            Character point = card.charAt(0);
-            map.merge(point, 1, Integer::sum);
-            set.add(card.charAt(0));
-        }
-        int[] counter = new int[5];
-        for (Character point : set) {
-            counter[map.get(point)]++;
-        }
+        int[] counter = getCounter(cardsArray);
         return counter[1] == 1 && counter[2] == 2;
 
     }
 
     private boolean isThreeOfAKind(String[] cardsArray) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (String card : cardsArray) {
-            Character point = card.charAt(0);
-            map.merge(point, 1, Integer::sum);
-        }
-        return map.size() == 3 &&
-                map.get(cardsArray[2].charAt(0)) == 3;
+        int[] counter = getCounter(cardsArray);
+        return counter[1] == 2 && counter[3] == 1;
     }
 
     private boolean isStraight(String[] cardsArray) {
@@ -80,27 +55,29 @@ public class Judge {
     }
 
     private boolean isFullHouse(String[] cardsArray) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (String card : cardsArray) {
-            Character point = card.charAt(0);
-            map.merge(point, 1, Integer::sum);
-
-        }
-        return map.size() == 2 && (
-                (map.get(cardsArray[0].charAt(0)) == 2 && map.get(cardsArray[4].charAt(0)) == 3)
-                        || (map.get(cardsArray[0].charAt(0)) == 3 && map.get(cardsArray[4].charAt(0)) == 2));
+        int[] counter = getCounter(cardsArray);
+        return counter[3] == 1 && counter[2] == 1;
 
     }
 
-    private boolean isFourOfAKind(String[] cardsArray) {
-        int flag = 0;
-        char previousPoint = cardsArray[1].charAt(0);
-        for (int i = 0; i < 5; i++) {
-            if (cardsArray[i].charAt(0) == previousPoint) {
-                flag++;
-            }
+    private int[] getCounter(String[] cardsArray) {
+        Map<Character, Integer> map = new HashMap<>();
+        Set<Character> set = new HashSet<>();
+        for (String card : cardsArray) {
+            Character point = card.charAt(0);
+            map.merge(point, 1, Integer::sum);
+            set.add(card.charAt(0));
         }
-        return flag == 4;
+        int[] counter = new int[5];
+        for (Character point : set) {
+            counter[map.get(point)]++;
+        }
+        return counter;
+    }
+
+    private boolean isFourOfAKind(String[] cardsArray) {
+        int[] counter = getCounter(cardsArray);
+        return counter[4] == 1 && counter[1] == 1;
     }
 
 
