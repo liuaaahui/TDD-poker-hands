@@ -61,4 +61,16 @@ public class JudgeTest {
         //then
         assertEquals(FLUSH, cardType);
     }
+
+    @Test
+    void should_return_straight_when_judge_type_given_3H4D5H6H7H() {
+        //given
+        String cardS = "3H 4D 5H 6H 7H";
+
+        //when
+        CardType cardType = judge.judgeType(cardS);
+
+        //then
+        assertEquals(STRAIGHT, cardType);
+    }
 }
