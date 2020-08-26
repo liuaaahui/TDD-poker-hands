@@ -10,6 +10,7 @@ public class Judge {
         Arrays.sort(cardsArray);
         if (isFourOfAKind(cardsArray)) return CardType.Four_OF_A_KIND;
         if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
+        if (isFlush(cardsArray)) return CardType.FLUSH;
         char previousColor = cardsArray[0].charAt(1);
         char previousPoint = cardsArray[0].charAt(0);
         for (int i = 1; i < 5; i++) {
@@ -19,6 +20,17 @@ public class Judge {
             }
         }
         return CardType.STRAIGHT_FLUSH;
+    }
+
+    private boolean isFlush(String[] cardsArray) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (String card : cardsArray) {
+            Character point = card.charAt(1);
+            map.merge(point, 1, Integer::sum);
+
+        }
+        return map.size() == 1 &&
+                map.get(cardsArray[0].charAt(1)) == 5;
     }
 
     private boolean isFullHouse(String[] cardsArray) {
