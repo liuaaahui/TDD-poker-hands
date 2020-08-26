@@ -89,6 +89,10 @@ public class Judge {
         if (cardType == CardType.STRAIGHT_FLUSH) {
             return pointMap.get(whiteCards[whiteCards.length - 1].charAt(0)).compareTo(pointMap.get(blackCards[blackCards.length - 1].charAt(0)));
         }
+        if (cardType == CardType.Four_OF_A_KIND) {
+            return pointMap.get(whiteCards[1].charAt(0)).compareTo(pointMap.get(blackCards[1].charAt(0)));
+
+        }
         return 0;
 
     }
@@ -107,4 +111,5 @@ public class Judge {
         Arrays.sort(cards, Comparator.comparing(s -> pointMap.get(s.charAt(0))));
         return cards;
     }
+
 }
