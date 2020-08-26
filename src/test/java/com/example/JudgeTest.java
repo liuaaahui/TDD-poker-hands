@@ -134,4 +134,17 @@ public class JudgeTest {
         //then
         assertEquals(0, result);
     }
+
+    @Test
+    void should_return_1_when_judge_face_given_ADKDQDJDTD_and_ASKSQSJSTS() {
+        //given
+        String white = "AD KD QD JD TD";
+        String black = "9S KS QS JS TS";
+
+        //when
+        int result = judge.judgeFaceWithSameType(white, black);
+
+        //then
+        assertEquals(1, result);
+    }
 }
