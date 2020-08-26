@@ -129,7 +129,7 @@ public class JudgeTest {
         String black = "2D 3H 5C 9S KH";
 
         //when
-        int result = judge.judgeFaceWithSameType(white, black);
+        int result = judge.judgeFaceWithSameType(white, black, HIGH_CARD);
 
         //then
         assertEquals(0, result);
@@ -142,7 +142,7 @@ public class JudgeTest {
         String black = "9S KS QS JS TS";
 
         //when
-        int result = judge.judgeFaceWithSameType(white, black);
+        int result = judge.judgeFaceWithSameType(white, black, STRAIGHT_FLUSH);
 
         //then
         assertEquals(1, result);

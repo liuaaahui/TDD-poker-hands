@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Judge {
     public CardType judgeType(String cards) {
-        String[] cardsArray = cards.split(" ");
-        Arrays.sort(cardsArray);
+        String[] cardsArray = sortCards(cards);
+
         if (isStraight(cardsArray) && isFlush(cardsArray)) return CardType.STRAIGHT_FLUSH;
         if (isFourOfAKind(cardsArray)) return CardType.Four_OF_A_KIND;
         if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
@@ -81,12 +81,14 @@ public class Judge {
     }
 
 
-    public int judgeFaceWithSameType(String white, String black) {
-        String[] whiteCards = white.split(" ");
-        Arrays.sort(whiteCards);
-        String[] blackCards = black.split(" ");
-        Arrays.sort(blackCards);
+    public int judgeFaceWithSameType(String white, String black, CardType cardType) {
+        Map<Character, Integer> pointMap = new PointMapper().getMap();
+        String[] whiteCards = sortCards(white);
+        String[] blackCards = sortCards(black);
         if (isTie(whiteCards, blackCards)) return 0;
+        if (cardType == CardType.STRAIGHT_FLUSH) {
+            return pointMap.get(whiteCards[whiteCards.length - 1].charAt(0)).compareTo(pointMap.get(blackCards[blackCards.length - 1].charAt(0)));
+        }
         return 0;
 
     }
@@ -97,5 +99,12 @@ public class Judge {
                 return false;
         }
         return true;
+    }
+
+    private String[] sortCards(String cardString) {
+        Map<Character, Integer> pointMap = new PointMapper().getMap();
+        String[] cards = cardString.split(" ");
+        Arrays.sort(cards, Comparator.comparing(s -> pointMap.get(s.charAt(0))));
+        return cards;
     }
 }
