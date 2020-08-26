@@ -13,7 +13,24 @@ public class Judge {
         if (isStraight(cardsArray)) return CardType.STRAIGHT;
         if (isThreeOfAKind(cardsArray)) return CardType.THREE_OF_A_KIND;
         if (isTwoPairs(cardsArray)) return CardType.TWO_PAIRS;
+        if (isPair(cardsArray)) return CardType.PAIR;
+
         return null;
+    }
+
+    private boolean isPair(String[] cardsArray) {
+        Map<Character, Integer> map = new HashMap<>();
+        Set<Character> set = new HashSet<>();
+        for (String card : cardsArray) {
+            Character point = card.charAt(0);
+            map.merge(point, 1, Integer::sum);
+            set.add(card.charAt(0));
+        }
+        int[] counter = new int[5];
+        for (Character point : set) {
+            counter[map.get(point)]++;
+        }
+        return counter[1] == 3 && counter[2] == 1;
     }
 
     private boolean isTwoPairs(String[] cardsArray) {
