@@ -95,7 +95,7 @@ public class Judge {
         if (cardType == CardType.FULL_HOUSE || cardType == CardType.THREE_OF_A_KIND) {
             return pointMap.get(whiteCards[2].charAt(0)).compareTo(pointMap.get(blackCards[2].charAt(0)));
         }
-        if (cardType == CardType.FLUSH) {
+        if (cardType == CardType.FLUSH || cardType == CardType.HIGH_CARD) {
             for (int index = 4; index >= 0; index--) {
                 int result = pointMap.get(whiteCards[index].charAt(0)).compareTo(pointMap.get(blackCards[index].charAt(0)));
                 if (result != 0) return result;
