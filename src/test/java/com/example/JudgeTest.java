@@ -73,4 +73,16 @@ public class JudgeTest {
         //then
         assertEquals(STRAIGHT, cardType);
     }
+
+    @Test
+    void should_return_three_of_a_kind_when_judge_type_given_3H4D5H6H7H() {
+        //given
+        String cardS = "3H 3D 3S 6H 7H";
+
+        //when
+        CardType cardType = judge.judgeType(cardS);
+
+        //then
+        assertEquals(THREE_OF_A_KIND, cardType);
+    }
 }

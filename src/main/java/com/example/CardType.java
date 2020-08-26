@@ -5,7 +5,8 @@ public enum CardType {
     Four_OF_A_KIND(8),
     FULL_HOUSE(7),
     FLUSH(6),
-    STRAIGHT(5);
+    STRAIGHT(5),
+    THREE_OF_A_KIND(4);
     private final int weight;
 
     CardType(int weight) {
