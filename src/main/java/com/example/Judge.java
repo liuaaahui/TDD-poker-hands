@@ -81,4 +81,7 @@ public class Judge {
     }
 
 
+    public int judgeFaceWithSameType(String white, String black) {
+        return 0;
+    }
 }

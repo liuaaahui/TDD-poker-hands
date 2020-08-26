@@ -121,4 +121,17 @@ public class JudgeTest {
         //then
         assertEquals(HIGH_CARD, cardType);
     }
+
+    @Test
+    void should_return_0_when_judge_face_given_2H3D5S9CKD_and_2D3H5C9SKH() {
+        //given
+        String white = "2H 3D 5S 9C KD";
+        String black = "2D 3H 5C 9S KH";
+
+        //when
+        int result = judge.judgeFaceWithSameType(white, black);
+
+        //then
+        assertEquals(0, result);
+    }
 }
