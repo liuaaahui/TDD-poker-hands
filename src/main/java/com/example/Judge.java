@@ -13,8 +13,18 @@ public class Judge {
         if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
         if (isFlush(cardsArray)) return CardType.FLUSH;
         if (isStraight(cardsArray)) return CardType.STRAIGHT;
-
+        if (isThreeOfAKind(cardsArray)) return CardType.THREE_OF_A_KIND;
         return null;
+    }
+
+    private boolean isThreeOfAKind(String[] cardsArray) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (String card : cardsArray) {
+            Character point = card.charAt(0);
+            map.merge(point, 1, Integer::sum);
+        }
+        return map.size() == 3 &&
+                map.get(cardsArray[2].charAt(0)) == 3;
     }
 
     private boolean isStraight(String[] cardsArray) {
