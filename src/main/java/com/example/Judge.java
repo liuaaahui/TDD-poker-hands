@@ -100,10 +100,46 @@ public class Judge {
                 int result = pointMap.get(whiteCards[index].charAt(0)).compareTo(pointMap.get(blackCards[index].charAt(0)));
                 if (result != 0) return result;
             }
-
+        }
+        if (cardType == CardType.TWO_PAIRS) {
+            return judgeFaceWhenTwoPairs(whiteCards, blackCards);
         }
         return 0;
 
+    }
+
+    private int judgeFaceWhenTwoPairs(String[] whiteCards, String[] blackCards) {
+        Entry[] whiteEntry = cardEntrySort(whiteCards);
+        Entry[] blackEntry = cardEntrySort(blackCards);
+        for (int i = 0; i < 3; i++) {
+            int result = whiteEntry[i].getPoints().compareTo(blackEntry[i].getPoints());
+            if (result != 0) return result;
+        }
+        return 0;
+    }
+
+    private Entry[] cardEntrySort(String[] Cards) {
+        Map<Character, Integer> pointMap = new PointMapper().getMap();
+        Map<Character, Integer> whiteMap = new HashMap<>();
+        for (String card : Cards) {
+            Character point = card.charAt(0);
+            whiteMap.merge(point, 1, Integer::sum);
+        }
+        Set<Map.Entry<Character, Integer>> whiteSet = whiteMap.entrySet();
+        List<Entry> entryList = new ArrayList<>();
+        for (Map.Entry<Character, Integer> characterIntegerEntry : whiteSet) {
+
+            Entry entry = new Entry((characterIntegerEntry).getKey(), (characterIntegerEntry).getValue());
+            entryList.add(entry);
+        }
+        Entry[] entries = entryList.toArray(new Entry[0]);
+        Arrays.sort(entries, (a, b) -> {
+            if (a.getNumber().compareTo(b.getNumber()) == 0) {
+                return pointMap.get(a.getPoints()).compareTo(pointMap.get(b.getPoints()));
+            }
+            return a.getNumber().compareTo(b.getNumber());
+        });
+        return entries;
     }
 
     private boolean isTie(String[] whiteCards, String[] blackCards) {
@@ -119,6 +155,32 @@ public class Judge {
         String[] cards = cardString.split(" ");
         Arrays.sort(cards, Comparator.comparing(s -> pointMap.get(s.charAt(0))));
         return cards;
+    }
+
+    private class Entry {
+        Character points;
+        Integer number;
+
+        public Entry(Character points, Integer number) {
+            this.points = points;
+            this.number = number;
+        }
+
+        public Character getPoints() {
+            return points;
+        }
+
+        public void setPoints(Character points) {
+            this.points = points;
+        }
+
+        public Integer getNumber() {
+            return number;
+        }
+
+        public void setNumber(Integer number) {
+            this.number = number;
+        }
     }
 
 }
