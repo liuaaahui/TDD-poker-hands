@@ -238,4 +238,17 @@ public class JudgeTest {
         //then
         assertEquals(1, result);
     }
+
+    @Test
+    void should_return_1_when_judge_face_given_3H3D5S6C9D_and_3C3S4S5C9H() {
+        //given
+        String white = "3H 3D 5S 6C 9D";
+        String black = "3C 3S 4S 5C 9H";
+
+        //when
+        int result = judge.judgeFaceWithSameType(white, black, PAIR);
+
+        //then
+        assertEquals(1, result);
+    }
 }
