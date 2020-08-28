@@ -101,17 +101,17 @@ public class Judge {
                 if (result != 0) return result;
             }
         }
-        if (cardType == CardType.TWO_PAIRS) {
-            return judgeFaceWhenTwoPairs(whiteCards, blackCards);
+        if (cardType == CardType.TWO_PAIRS || cardType == CardType.PAIR) {
+            return judgeFaceWhenExistPair(whiteCards, blackCards);
         }
         return 0;
 
     }
 
-    private int judgeFaceWhenTwoPairs(String[] whiteCards, String[] blackCards) {
+    private int judgeFaceWhenExistPair(String[] whiteCards, String[] blackCards) {
         Entry[] whiteEntry = cardEntrySort(whiteCards);
         Entry[] blackEntry = cardEntrySort(blackCards);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < whiteEntry.length; i++) {
             int result = whiteEntry[i].getPoints().compareTo(blackEntry[i].getPoints());
             if (result != 0) return result;
         }
