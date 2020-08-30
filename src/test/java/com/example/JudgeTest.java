@@ -17,7 +17,7 @@ public class JudgeTest {
     @Test
     void should_return_Straight_flush_when_judge_type_given_3H4H5H6H7H() {
         //given
-        String cardS = "3H 4H 5H 6H 7H";
+        String[] cardS = {"3H", "4H", "5H", "6H", "7H"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -29,7 +29,7 @@ public class JudgeTest {
     @Test
     void should_return_four_of_a_kind_when_judge_type_given_3H3S3C3D7H() {
         //given
-        String cardS = "3D JH 3H 3S 3C";
+        String[] cardS = {"3D", "3H", "3S", "3C", "JH"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -41,7 +41,7 @@ public class JudgeTest {
     @Test
     void should_return_full_house_when_judge_type_given_3H3S3C7D7H() {
         //given
-        String cardS = "3H 3S 3C KD KH";
+        String[] cardS = {"3H", "3S", "3C", "KD", "KH"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -53,7 +53,7 @@ public class JudgeTest {
     @Test
     void should_return_flush_when_judge_type_given_3H4H5H7H9H() {
         //given
-        String cardS = "3H 4H 5H QH 9H";
+        String[] cardS = {"3H","4H","5H","9H","QH"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -65,7 +65,7 @@ public class JudgeTest {
     @Test
     void should_return_straight_when_judge_type_given_3H4D5H6H7H() {
         //given
-        String cardS = "3H 4D 5H 6H 7H";
+        String[] cardS = {"3H", "4D", "5H", "6H", "7H"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -77,7 +77,7 @@ public class JudgeTest {
     @Test
     void should_return_three_of_a_kind_when_judge_type_given_3H4D5H6H7H() {
         //given
-        String cardS = "3H 3D 3S AH 7H";
+        String[] cardS = {"3H", "3D", "3S", "7H", "AH"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -89,7 +89,7 @@ public class JudgeTest {
     @Test
     void should_return_two_pairs_when_judge_type_given_3H3D5S9C5D() {
         //given
-        String cardS = "3H 3D 5S AC 5D";
+        String[] cardS = {"3H", "3D", "5S" ,"5D","AC"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -101,7 +101,7 @@ public class JudgeTest {
     @Test
     void should_return_pair_when_judge_type_given_3H3D5S9CKD() {
         //given
-        String cardS = "3H 3D 5S 9C KD";
+        String[] cardS = {"3H", "3D", "5S", "9C", "KD"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -113,7 +113,7 @@ public class JudgeTest {
     @Test
     void should_return_high_card_when_judge_type_given_3H4D5S9CKD() {
         //given
-        String cardS = "3H 4D 5S 9C KD";
+        String[] cardS = {"3H", "4D", "5S", "9C", "KD"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
@@ -125,8 +125,8 @@ public class JudgeTest {
     @Test
     void should_return_0_when_judge_face_given_2H3D5S9CKD_and_2D3H5C9SKH() {
         //given
-        String white = "2H 3D 5S 9C KD";
-        String black = "2D 3H 5C 9S KH";
+        String[] white = {"2H","3D", "5S","9C", "KD"};
+        String[] black = {"2D", "3H", "5C", "9S", "KH"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, HIGH_CARD);
@@ -138,8 +138,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_ADKDQDJDTD_and_ASKSQSJSTS() {
         //given
-        String white = "AD KD QD JD TD";
-        String black = "9S KS QS JS TS";
+        String[] white = { "TD","JD","QD","KD","AD"};
+        String[] black = { "9S" ,"TS","JS","QS","KS"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, STRAIGHT_FLUSH);
@@ -151,8 +151,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_9C9D9H9STD_and_4C4D4H4SAS() {
         //given
-        String white = "9C 9D 9H 9S TD";
-        String black = "4C 4D 4H 4S AS";
+        String[] white = {"9C", "9D", "9H", "9S","TD"};
+        String[] black = {"4C", "4D", "4H", "4S", "AS"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, Four_OF_A_KIND);
@@ -164,8 +164,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_9C9D9HTSTD_and_4C4D4HQSQS() {
         //given
-        String white = "9C 9D 9H TS TD";
-        String black = "4C 4D 4H QS QS";
+        String[] white = {"9C", "9D", "9H","TS", "TD"};
+        String[] black = {"4C", "4D", "4H", "QS","QS"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, FULL_HOUSE);
@@ -177,8 +177,9 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_TD8S9C6H7D_and_3H4D5H7H6D() {
         //given
-        String white = "TD 8S 9C 6H 7D";
-        String black = "3H 4D 5H 7H 6D";
+        String[] white = {"6H", "7D", "8S", "9C", "TD"};
+        String[] black = {"3H", "4D", "5H", "6D", "7H"};
+
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, STRAIGHT);
@@ -190,8 +191,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_3H5H6H9HTH_and_4C6C7C8C9C() {
         //given
-        String white = "3H 5H 6H 9H TH";
-        String black = "4C 6C 7C 8C 9C";
+        String[] white = {"3H","5H","6H", "9H", "TH"};
+        String[] black = {"4C", "6C", "7C", "8C", "9C"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, FLUSH);
@@ -203,8 +204,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_9H9C9D3H4H_and_4H4C4D8C9S() {
         //given
-        String white = "9H 9C 9D 3H 4S";
-        String black = "4H 4C 4D 8C 9S";
+        String[] white = {"3H", "4S","9H", "9C", "9D",};
+        String[] black = {"4H", "4C","4D" ,"8C" ,"9S"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, THREE_OF_A_KIND);
@@ -216,8 +217,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_9HTCAD4H7H_and_KHQC2D8C9S() {
         //given
-        String white = "9H TC AD 4H 7H";
-        String black = "KH QC 2D 8C 9S";
+        String[] white = {"4H", "7H", "9H", "TC", "AD"};
+        String[] black = {"2D", "8C", "9S", "QC", "KH"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, HIGH_CARD);
@@ -229,8 +230,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_3H3D5S5C9D_and_3C3S4S4C9H() {
         //given
-        String white = "3H 3D 5S 5C 9D";
-        String black = "3C 3S 4S 4C 9H";
+        String[] white = {"3H", "3D" ,"5S","5C" ,"9D"};
+        String[] black = {"3C","3S", "4S", "4C", "9H"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, TWO_PAIRS);
@@ -242,8 +243,8 @@ public class JudgeTest {
     @Test
     void should_return_1_when_judge_face_given_3H3D5S6C9D_and_3C3S4S5C9H() {
         //given
-        String white = "3H 3D 5S 6C 9D";
-        String black = "3C 3S 4S 5C 9H";
+        String[] white = {"3H", "3D" ,"5S","6C" ,"9D"};
+        String[] black = {"3C", "3S" ,"4S" ,"5C" ,"9H"};
 
         //when
         int result = judge.judgeFaceWithSameType(white, black, PAIR);

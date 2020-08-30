@@ -3,17 +3,15 @@ package com.example;
 import java.util.*;
 
 public class Judge {
-    public CardType judgeType(String cards) {
-        String[] cardsArray = sortCards(cards);
-
-        if (isStraight(cardsArray) && isFlush(cardsArray)) return CardType.STRAIGHT_FLUSH;
-        if (isFourOfAKind(cardsArray)) return CardType.Four_OF_A_KIND;
-        if (isFullHouse(cardsArray)) return CardType.FULL_HOUSE;
-        if (isFlush(cardsArray)) return CardType.FLUSH;
-        if (isStraight(cardsArray)) return CardType.STRAIGHT;
-        if (isThreeOfAKind(cardsArray)) return CardType.THREE_OF_A_KIND;
-        if (isTwoPairs(cardsArray)) return CardType.TWO_PAIRS;
-        if (isPair(cardsArray)) return CardType.PAIR;
+    public CardType judgeType(String[] cards) {
+        if (isStraight(cards) && isFlush(cards)) return CardType.STRAIGHT_FLUSH;
+        if (isFourOfAKind(cards)) return CardType.Four_OF_A_KIND;
+        if (isFullHouse(cards)) return CardType.FULL_HOUSE;
+        if (isFlush(cards)) return CardType.FLUSH;
+        if (isStraight(cards)) return CardType.STRAIGHT;
+        if (isThreeOfAKind(cards)) return CardType.THREE_OF_A_KIND;
+        if (isTwoPairs(cards)) return CardType.TWO_PAIRS;
+        if (isPair(cards)) return CardType.PAIR;
 
         return CardType.HIGH_CARD;
     }
@@ -81,10 +79,8 @@ public class Judge {
     }
 
 
-    public int judgeFaceWithSameType(String white, String black, CardType cardType) {
+    public int judgeFaceWithSameType(String[] whiteCards, String[] blackCards, CardType cardType) {
         Map<Character, Integer> pointMap = new PointMapper().getMap();
-        String[] whiteCards = sortCards(white);
-        String[] blackCards = sortCards(black);
         if (isTie(whiteCards, blackCards)) return 0;
         if (cardType == CardType.STRAIGHT_FLUSH || cardType == CardType.STRAIGHT) {
             return pointMap.get(whiteCards[whiteCards.length - 1].charAt(0)).compareTo(pointMap.get(blackCards[blackCards.length - 1].charAt(0)));
@@ -150,12 +146,7 @@ public class Judge {
         return true;
     }
 
-    private String[] sortCards(String cardString) {
-        Map<Character, Integer> pointMap = new PointMapper().getMap();
-        String[] cards = cardString.split(" ");
-        Arrays.sort(cards, Comparator.comparing(s -> pointMap.get(s.charAt(0))));
-        return cards;
-    }
+
 
     private class Entry {
         Character points;
