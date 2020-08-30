@@ -21,11 +21,16 @@ public class Generator {
                 return getThreeOfAKindResult(cards);
             case STRAIGHT:
                 return getStraightResult(cards);
-
+            case FLUSH:
+                return getFlushResult(cards);
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
+    }
+
+    private String getFlushResult(String[] cards) {
+        return String.format("flush: %s",resultMapper.getPointResult(cards[4]));
     }
 
     private String getStraightResult(String[] cards) {
