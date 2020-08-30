@@ -65,4 +65,14 @@ public class GeneratorTest {
         //then
         assertEquals("straight: 8", result);
     }
+    @Test
+    void should_return_flush_9_when_generateResult_given_2H4H5H8H9H() {
+        //given
+        String[] cards = {"2H","4H","5H","8H","9H"};
+        //when
+        String result = generator.generateResult(cards, CardType.FLUSH);
+
+        //then
+        assertEquals("flush: 9", result);
+    }
 }

@@ -21,6 +21,7 @@ public class Generator {
                 return getThreeOfAKindResult(cards);
             case STRAIGHT:
                 return getStraightResult(cards);
+
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
