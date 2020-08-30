@@ -55,6 +55,7 @@ public class GeneratorTest {
         //then
         assertEquals("three of a kind: 8", result);
     }
+
     @Test
     void should_return_straight_8_when_generateResult_given_4H5D6H7D8D() {
         //given
@@ -65,6 +66,7 @@ public class GeneratorTest {
         //then
         assertEquals("straight: 8", result);
     }
+
     @Test
     void should_return_flush_9_when_generateResult_given_2H4H5H8H9H() {
         //given
@@ -74,5 +76,16 @@ public class GeneratorTest {
 
         //then
         assertEquals("flush: 9", result);
+    }
+
+    @Test
+    void should_return_full_house_4_over_8_when_generateResult_given_4C4H4S8H8C() {
+        //given
+        String[] cards = {"4C","4H","4S","8H","8C"};
+        //when
+        String result = generator.generateResult(cards, CardType.FULL_HOUSE);
+
+        //then
+        assertEquals("full house: 4 over 8", result);
     }
 }
