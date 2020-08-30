@@ -99,4 +99,15 @@ public class GeneratorTest {
         //then
         assertEquals("four of a kind: 4 over 6", result);
     }
+
+    @Test
+    void should_return_straight_flush_8_when_generateResult_given_4D5D6D7D8D() {
+        //given
+        String[] cards = {"4D","5D","6D","7D","8D"};
+        //when
+        String result = generator.generateResult(cards, CardType.STRAIGHT_FLUSH);
+
+        //then
+        assertEquals("straight flush: 8", result);
+    }
 }
