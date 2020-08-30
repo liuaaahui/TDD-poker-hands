@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.*;
 
+import static com.example.Entry.cardEntrySort;
+
 public class Judge {
     public CardType judgeType(String[] cards) {
         if (isStraight(cards) && isFlush(cards)) return CardType.STRAIGHT_FLUSH;
@@ -114,29 +116,7 @@ public class Judge {
         return 0;
     }
 
-    private Entry[] cardEntrySort(String[] Cards) {
-        Map<Character, Integer> pointMap = new PointMapper().getMap();
-        Map<Character, Integer> whiteMap = new HashMap<>();
-        for (String card : Cards) {
-            Character point = card.charAt(0);
-            whiteMap.merge(point, 1, Integer::sum);
-        }
-        Set<Map.Entry<Character, Integer>> whiteSet = whiteMap.entrySet();
-        List<Entry> entryList = new ArrayList<>();
-        for (Map.Entry<Character, Integer> characterIntegerEntry : whiteSet) {
 
-            Entry entry = new Entry((characterIntegerEntry).getKey(), (characterIntegerEntry).getValue());
-            entryList.add(entry);
-        }
-        Entry[] entries = entryList.toArray(new Entry[0]);
-        Arrays.sort(entries, (a, b) -> {
-            if (a.getNumber().compareTo(b.getNumber()) == 0) {
-                return pointMap.get(a.getPoints()).compareTo(pointMap.get(b.getPoints()));
-            }
-            return a.getNumber().compareTo(b.getNumber());
-        });
-        return entries;
-    }
 
     private boolean isTie(String[] whiteCards, String[] blackCards) {
         for (int cardIndex = 0; cardIndex < whiteCards.length; cardIndex++) {
@@ -148,30 +128,6 @@ public class Judge {
 
 
 
-    private class Entry {
-        Character points;
-        Integer number;
 
-        public Entry(Character points, Integer number) {
-            this.points = points;
-            this.number = number;
-        }
-
-        public Character getPoints() {
-            return points;
-        }
-
-        public void setPoints(Character points) {
-            this.points = points;
-        }
-
-        public Integer getNumber() {
-            return number;
-        }
-
-        public void setNumber(Integer number) {
-            this.number = number;
-        }
-    }
 
 }

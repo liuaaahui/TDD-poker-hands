@@ -1,15 +1,37 @@
 package com.example;
 
-public class Generator {
+import static com.example.Entry.cardEntrySort;
 
-    public String generateResult(String[] cards,CardType cardType) {
-        ResultMapper resultMapper=new ResultMapper();
-        if(cardType==CardType.HIGH_CARD){
-            return String.format("%s: %s",
-                    resultMapper.getCardTypeResult(cardType),
-                    resultMapper.getPointResult(cards[cards.length-1]));
+public class Generator {
+    private final ResultMapper resultMapper;
+
+    public Generator() {
+        resultMapper = new ResultMapper();
+    }
+
+    public String generateResult(String[] cards, CardType cardType) {
+        switch (cardType) {
+            case HIGH_CARD:
+                return getHighCardResult(cards);
+            case PAIR:
+                return getPairResult(cards);
+
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + cardType);
         }
-        else return null;
+
+    }
+
+    private String getPairResult(String[] cards) {
+        Entry[] entries = cardEntrySort(cards);
+        return String.format("Pair of %s",
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 1].getPoints())));
+    }
+
+    private String getHighCardResult(String[] cards) {
+        return String.format("high card: %s",
+                resultMapper.getPointResult(cards[cards.length - 1]));
     }
 
 }
