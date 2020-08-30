@@ -88,4 +88,15 @@ public class GeneratorTest {
         //then
         assertEquals("full house: 4 over 8", result);
     }
+
+    @Test
+    void should_return_four_of_a_kind_4_over_6_when_generateResult_given_4C4H4S4D6C() {
+        //given
+        String[] cards = {"4C","4H","4S","4D","6C"};
+        //when
+        String result = generator.generateResult(cards, CardType.Four_OF_A_KIND);
+
+        //then
+        assertEquals("four of a kind: 4 over 6", result);
+    }
 }
