@@ -27,10 +27,16 @@ public class Generator {
                 return getFullHouseResult(cards);
             case Four_OF_A_KIND:
                 return getFourOfAKindResult(cards);
+            case STRAIGHT_FLUSH:
+                return getStraightFlushResult(cards);
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
+    }
+
+    private String getStraightFlushResult(String[] cards) {
+        return String.format("straight flush: %s",resultMapper.getPointResult(cards[4]));
     }
 
     private String getFourOfAKindResult(String[] cards) {
