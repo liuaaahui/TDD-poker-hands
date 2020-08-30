@@ -42,13 +42,13 @@ public class PokerHandsTest {
     @Test
     void should_return_tie_when_judge_face_given_and_KHQC2D8C9S_KSQd2S8D9H() {
         //given
-        String black = "9H TC AD 4H 7H";
+        String black = "KH QC 2D 8C 9S";
         String white = "KS Qd 2S 8D 9H";
 
         //when
         String result = pokerHands.play(white, black);
 
         //then
-        assertEquals("tie", result);
+        assertEquals("Tie.", result);
     }
 }

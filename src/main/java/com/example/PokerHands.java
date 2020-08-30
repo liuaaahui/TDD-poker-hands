@@ -28,21 +28,21 @@ public class PokerHands {
         String cardResult;
         CardType whiteCardType = judge.judgeType(whiteCards);
         CardType blackCardType = judge.judgeType(blackCards);
+        if(judge.isTie(whiteCards,blackCards))return "Tie.";
         if (whiteCardType.getWeight() > blackCardType.getWeight()) {
             winner = "white wins.";
             cardResult = getCardResult(whiteCards, whiteCardType);
-        } else if (whiteCardType.getWeight() == blackCardType.getWeight()) {
+        } else if (whiteCardType.getWeight() <blackCardType.getWeight()){
+            winner = "black wins.";
+            cardResult = getCardResult(blackCards, blackCardType);
+        } else {
             if (judge.judgeFaceWithSameType(whiteCards, blackCards, whiteCardType) > 0){
                 winner = "white wins.";
                 cardResult = getCardResult(whiteCards, whiteCardType);
-            }
-            else{
+            } else{
                 winner = "black wins.";
-                cardResult = getCardResult(blackCards, blackCardType);
+                cardResult = getCardResult(blackCards,blackCardType);
             }
-        } else {
-            winner = "black wins.";
-            cardResult = getCardResult(blackCards, blackCardType);
         }
         return String.format("%s - with %s", winner,cardResult);
     }

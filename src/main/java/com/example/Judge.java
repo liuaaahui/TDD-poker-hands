@@ -118,7 +118,7 @@ public class Judge {
 
 
 
-    private boolean isTie(String[] whiteCards, String[] blackCards) {
+    public boolean isTie(String[] whiteCards, String[] blackCards) {
         for (int cardIndex = 0; cardIndex < whiteCards.length; cardIndex++) {
             if (whiteCards[cardIndex].charAt(0) != blackCards[cardIndex].charAt(0))
                 return false;
