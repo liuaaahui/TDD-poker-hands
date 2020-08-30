@@ -24,17 +24,25 @@ public class PokerHands {
     }
 
     private String getResult(String[] whiteCards, String[] blackCards) {
-        String winner = "";
-        String cardResult = "";
+        String winner;
+        String cardResult;
         CardType whiteCardType = judge.judgeType(whiteCards);
         CardType blackCardType = judge.judgeType(blackCards);
         if (whiteCardType.getWeight() > blackCardType.getWeight()) {
             winner = "white wins.";
             cardResult = getCardResult(whiteCards, whiteCardType);
         } else if (whiteCardType.getWeight() == blackCardType.getWeight()) {
-            if (judge.judgeFaceWithSameType(whiteCards, blackCards, whiteCardType) > 0)
+            if (judge.judgeFaceWithSameType(whiteCards, blackCards, whiteCardType) > 0){
                 winner = "white wins.";
-            cardResult = getCardResult(whiteCards, whiteCardType);
+                cardResult = getCardResult(whiteCards, whiteCardType);
+            }
+            else{
+                winner = "black wins.";
+                cardResult = getCardResult(blackCards, blackCardType);
+            }
+        } else {
+            winner = "black wins.";
+            cardResult = getCardResult(blackCards, blackCardType);
         }
         return String.format("%s - with %s", winner,cardResult);
     }
