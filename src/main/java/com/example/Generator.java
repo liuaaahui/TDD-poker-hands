@@ -15,12 +15,20 @@ public class Generator {
                 return getHighCardResult(cards);
             case PAIR:
                 return getPairResult(cards);
-
+            case TWO_PAIRS:
+                return getTwoPairsResult(cards);
 
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
+    }
+
+    private String getTwoPairsResult(String[] cards) {
+        Entry[] entries = cardEntrySort(cards);
+        return String.format("two pairs %s and %s",
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 1].getPoints())),
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 2].getPoints())));
     }
 
     private String getPairResult(String[] cards) {

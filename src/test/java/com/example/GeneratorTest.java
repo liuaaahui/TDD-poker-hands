@@ -33,6 +33,7 @@ public class GeneratorTest {
         //then
         assertEquals("Pair of 8", result);
     }
+
     @Test
     void should_return_two_pairs_5_and_8_when_generateResult_given_5H5D8H8D9C() {
         //given
@@ -41,6 +42,6 @@ public class GeneratorTest {
         String result = generator.generateResult(cards, CardType.TWO_PAIRS);
 
         //then
-        assertEquals("two pairs 5 and 8", result);
+        assertEquals("two pairs 8 and 5", result);
     }
 }
