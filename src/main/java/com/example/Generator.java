@@ -17,11 +17,17 @@ public class Generator {
                 return getPairResult(cards);
             case TWO_PAIRS:
                 return getTwoPairsResult(cards);
-
+            case THREE_OF_A_KIND:
+                return getThreeOfAKindResult(cards);
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
+    }
+
+    private String getThreeOfAKindResult(String[] cards) {
+        return String.format("three of a kind: %s",
+                resultMapper.getPointResult(String.valueOf(cards[2])));
     }
 
     private String getTwoPairsResult(String[] cards) {
