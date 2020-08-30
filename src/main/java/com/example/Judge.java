@@ -35,9 +35,11 @@ public class Judge {
     }
 
     private boolean isStraight(String[] cardsArray) {
-        char previousPoint = cardsArray[0].charAt(0);
+        Map<Character, Integer> pointMap = new PointMapper().getMap();
+        int previousPoint = pointMap.get(cardsArray[0].charAt(0));
         for (int i = 1; i < 5; i++) {
-            if (previousPoint + 1 != cardsArray[i].charAt(0)) return false;
+            if (previousPoint + 1 != pointMap.get(cardsArray[i].charAt(0))) return false;
+
             previousPoint++;
         }
         return true;

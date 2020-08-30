@@ -17,7 +17,7 @@ public class JudgeTest {
     @Test
     void should_return_Straight_flush_when_judge_type_given_3H4H5H6H7H() {
         //given
-        String[] cardS = {"3H", "4H", "5H", "6H", "7H"};
+        String[] cardS = {"TH", "JH", "QH", "KH", "AH"};
 
         //when
         CardType cardType = judge.judgeType(cardS);
