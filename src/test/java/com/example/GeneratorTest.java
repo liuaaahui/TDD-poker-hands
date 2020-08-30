@@ -16,12 +16,11 @@ public class GeneratorTest {
     @Test
     void should_return_with_high_card_Ace_when_generateResult_given_9HTCAD4H7H() {
         //given
-        String cards = "9H TC AD 4H 7H";
-
+        String[] cards = {"4H", "7H","9H","TC","AD"};
         //when
-        String result = generator.generateResult(cards);
+        String result = generator.generateResult(cards, CardType.HIGH_CARD);
 
         //then
-        assertEquals("with high card: Ace", result);
+        assertEquals("high card: Ace", result);
     }
 }
