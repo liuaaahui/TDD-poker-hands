@@ -23,10 +23,19 @@ public class Generator {
                 return getStraightResult(cards);
             case FLUSH:
                 return getFlushResult(cards);
+            case FULL_HOUSE:
+                return getFullHouseResult(cards);
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
+    }
+
+    private String getFullHouseResult(String[] cards) {
+        Entry[] entries = cardEntrySort(cards);
+        return String.format("full house: %s over %s",
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 1].getPoints())),
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 2].getPoints())));
     }
 
     private String getFlushResult(String[] cards) {
