@@ -25,10 +25,19 @@ public class Generator {
                 return getFlushResult(cards);
             case FULL_HOUSE:
                 return getFullHouseResult(cards);
+            case Four_OF_A_KIND:
+                return getFourOfAKindResult(cards);
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
+    }
+
+    private String getFourOfAKindResult(String[] cards) {
+        Entry[] entries = cardEntrySort(cards);
+        return String.format("four of a kind: %s over %s",
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 1].getPoints())),
+                resultMapper.getPointResult(String.valueOf(entries[entries.length - 2].getPoints())));
     }
 
     private String getFullHouseResult(String[] cards) {
