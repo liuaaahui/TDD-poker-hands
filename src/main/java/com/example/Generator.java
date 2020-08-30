@@ -19,15 +19,21 @@ public class Generator {
                 return getTwoPairsResult(cards);
             case THREE_OF_A_KIND:
                 return getThreeOfAKindResult(cards);
+            case STRAIGHT:
+                return getStraightResult(cards);
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
 
     }
 
+    private String getStraightResult(String[] cards) {
+        return String.format("straight: %s",resultMapper.getPointResult(cards[4]));
+    }
+
     private String getThreeOfAKindResult(String[] cards) {
         return String.format("three of a kind: %s",
-                resultMapper.getPointResult(String.valueOf(cards[2])));
+                resultMapper.getPointResult(cards[2]));
     }
 
     private String getTwoPairsResult(String[] cards) {

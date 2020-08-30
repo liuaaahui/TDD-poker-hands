@@ -55,4 +55,14 @@ public class GeneratorTest {
         //then
         assertEquals("three of a kind: 8", result);
     }
+    @Test
+    void should_return_straight_8_when_generateResult_given_4H5D6H7D8D() {
+        //given
+        String[] cards = {"4H","5D","6H","7D","8D"};
+        //when
+        String result = generator.generateResult(cards, CardType.STRAIGHT);
+
+        //then
+        assertEquals("straight: 8", result);
+    }
 }
