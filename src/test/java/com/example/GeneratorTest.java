@@ -44,4 +44,15 @@ public class GeneratorTest {
         //then
         assertEquals("two pairs 8 and 5", result);
     }
+
+    @Test
+    void should_return_three_of_a_kind_8_when_generateResult_given_8H8D8H9DTC() {
+        //given
+        String[] cards = {"8H","8D","8H","9D","TC"};
+        //when
+        String result = generator.generateResult(cards, CardType.THREE_OF_A_KIND);
+
+        //then
+        assertEquals("three of a kind: 8", result);
+    }
 }
